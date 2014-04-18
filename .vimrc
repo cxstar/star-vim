@@ -17,10 +17,6 @@ filetype indent on
 
 let mapleader = ","
 let g:mapleader = ","
-
-nmap <leader>w :w!<cr>
-map <leader>e :e! ~/.vimrc<cr>
-
 set history=700
 set autoread
 set so=7
@@ -54,18 +50,38 @@ set laststatus=2
 
 set statusline=\ %F%m%r%h\ %w\ buf:%n\ type:%Y\ Format:%{&ff}\ \ \ \ Line:\ %l/%L:%c
 
-autocmd bufwritepost .gvimrc source ~/.vimrc
+autocmd bufwritepost $MYVIMRC source $MYVIMRC
 
 let g:vimrc_author='star'
 let g:vimrc_email='1029361533@qq.com'
 let g:vimrc_homepage='http://www.cxstars.com'
+
+" add author info
 nmap <F4> :AuthorInfoDetect<cr>
+
+" nerdtree toggle
 nmap <leader>t :NERDTreeToggle<cr>
 
 let Tlist_Ctags_Cmd="/usr/local/bin/ctags"
 let Tlist_Use_Right_Window=1
+
+" tlist plugin toggle
 nmap <leader>c :TlistToggle<cr>
-imap <leader>n <Esc>:call Teststar()<cr>
-function Teststar()
-    execute "normal o<cr>"
-endfunction
+
+" add ; on the end of current line and write a new line
+imap <leader>a <esc>$a;<esc>o
+
+" force write
+nmap <leader>w :w!<cr>
+
+" force edit current using vimrc file
+map <leader>e :e! $MYVIMRC<cr>
+
+" source edited vimrc file
+map <leader>se :source $MYVIMRC<cr>
+
+" run php file
+map <leader>rp :!php %<cr>
+
+imap <leader>o <esc>
+
